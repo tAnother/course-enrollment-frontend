@@ -8,9 +8,10 @@ export default class AllCourses extends React.Component {
     }
 
     componentDidMount() {
-        CourseService.getAllCourses().then(courses => {
+        CourseService.getAllCourses()
+        .then(res => {
             this.setState({
-                courses: courses
+                courses: res.data
             });
         });
     }

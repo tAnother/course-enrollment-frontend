@@ -13,7 +13,7 @@ export default function CourseTable(props) {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Course ID</TableCell>
+            <TableCell>ID</TableCell>
             <TableCell align="right">Course Name</TableCell>
             <TableCell align="right">Description</TableCell>
             <TableCell align="right">Location</TableCell>
@@ -21,20 +21,19 @@ export default function CourseTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.courses.map((course, index) => (
+          {console.log(props.courses)}
+          {props.courses.map((course, index) => 
             <TableRow
-              key={index}
+              key={course.courseName}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                {course.ID}
-              </TableCell>
-              <TableCell align="right">{course.name}</TableCell>
-              <TableCell align="right">{course.description}</TableCell>
-              <TableCell align="right">{course.location}</TableCell>
-              <TableCell align="right">{course.instructor}</TableCell>
+              <TableCell component="th" scope="row">{index+1}</TableCell>
+              <TableCell align="right">{course.courseName}</TableCell>
+              <TableCell align="right">{course.courseDescription}</TableCell>
+              <TableCell align="right">{course.courseLocation}</TableCell>
+              <TableCell align="right">{course.instructorId}</TableCell>
             </TableRow>
-          ))}
+          )}
         </TableBody>
       </Table>
     </TableContainer>

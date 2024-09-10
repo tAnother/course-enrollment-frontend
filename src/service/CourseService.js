@@ -1,8 +1,8 @@
-import { courses } from './dummydata';
+import axios from "../axios/config";
 
 export const CourseService = {
     getAllCourses: async () => {
-        return courses;
+        return axios.get("/api/courses");
     },
     getEnrolledCourses: () => {},
     enrollCourse: () => {},

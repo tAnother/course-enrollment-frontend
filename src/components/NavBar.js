@@ -5,8 +5,18 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import LoginDialog from './LoginDialog';
 
 export default function NavBar() {
+  const [loginDialogOpen, setLoginDialogOpen] = React.useState(false);
+  const handleOpenLogin = () => {
+    setLoginDialogOpen(true);
+  };
+
+  const handleCloseLogin = () => {
+    setLoginDialogOpen(false);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -25,9 +35,11 @@ export default function NavBar() {
           </Typography>
           <Button color="inherit" component={Link} to="/">All Courses</Button>
           <Button color="inherit" component={Link} to="/enrolled">Enrolled</Button>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" onClick={handleOpenLogin}>Login</Button>
         </Toolbar>
       </AppBar>
+
+      <LoginDialog open={loginDialogOpen} onClose={handleCloseLogin}/>
     </Box>
   );
 }
