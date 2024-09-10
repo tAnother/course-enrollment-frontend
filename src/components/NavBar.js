@@ -6,16 +6,26 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import LoginDialog from './LoginDialog';
+import { JWT_COOKIE_KEY } from '../constants';
+import cookie from "react-cookies"
 
 export default function NavBar() {
   const [loginDialogOpen, setLoginDialogOpen] = React.useState(false);
   const handleOpenLogin = () => {
-    setLoginDialogOpen(true);
+    if (isLoggedIn) {
+      // logout: just remove token and hard refresh
+      cookie.remove(JWT_COOKIE_KEY);
+      window.location.reload();
+    } else {
+      setLoginDialogOpen(true);
+    }
   };
 
   const handleCloseLogin = () => {
     setLoginDialogOpen(false);
   };
+
+  let isLoggedIn = !!cookie.load(JWT_COOKIE_KEY);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -35,7 +45,7 @@ export default function NavBar() {
           </Typography>
           <Button color="inherit" component={Link} to="/">All Courses</Button>
           <Button color="inherit" component={Link} to="/enrolled">Enrolled</Button>
-          <Button color="inherit" onClick={handleOpenLogin}>Login</Button>
+          <Button color="inherit" onClick={handleOpenLogin}>{isLoggedIn ? 'Logout' : 'Login'}</Button>
         </Toolbar>
       </AppBar>
 

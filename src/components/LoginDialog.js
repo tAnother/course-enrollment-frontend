@@ -15,7 +15,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { DialogContentText } from '@mui/material';
 import { AuthService } from '../service/AuthService';
 import cookie from "react-cookies";
-import { JWT_TOKEN_COOKIE_KEY } from '../constants';
+import { JWT_COOKIE_KEY } from '../constants';
 
 export default function LoginDialog(props) {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -36,16 +36,16 @@ export default function LoginDialog(props) {
   let password;
 
   const login = () => {
-    AuthService.getJWTToken(username, password)
-    .then(res => {
-      const jwt = res.data.id_token;  // check @JsonProperty to get the name in response.data
-      cookie.save(JWT_TOKEN_COOKIE_KEY, jwt); 
-      window.location.reload(); // refresh to activate JWT
-    })
-    .catch(err => {
-      console.error(err);
-      setErrorMsg(err.message);
-    });
+    AuthService.getJWT(username, password)
+      .then(res => {
+        const jwt = res.data.id_token;  // check @JsonProperty to get the key in response.data
+        cookie.save(JWT_COOKIE_KEY, jwt); 
+        window.location.reload(); // refresh to activate JWT
+      })
+      .catch(err => {
+        console.error(err);
+        setErrorMsg(err.message);
+      });
   };
 
   return (

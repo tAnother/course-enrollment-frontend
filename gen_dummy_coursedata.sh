@@ -21,11 +21,10 @@ do
     # Create JSON object
     cat << EOF >> dummy_courses.json
   {
-    "ID": $i,
-    "name": "$name",
-    "description": "$description",
-    "location": $location,
-    "instructor": $instructor
+    "courseName": "$name",
+    "courseDescription": "$description",
+    "courseLocation": $location,
+    "instructorId": $instructor
   }$([ $i -lt 50 ] && echo ',')
 EOF
 done

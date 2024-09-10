@@ -1,10 +1,10 @@
-import axios from "../axios/config";
+import axios from "axios";
 
 export const AuthService = {
-    getJWTToken: (username, password) => {
-        return axios.post("api/authenticate", {
-            "username": username,
-            "password": password
-        });
-    },
+  getJWT: (username, password) => {
+    return axios.post("api/authenticate", {
+      "username": username,
+      "password": password
+    });
+  },
 }
