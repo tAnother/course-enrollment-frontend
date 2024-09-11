@@ -1,8 +1,12 @@
 import React from "react";
 import CourseTable from "../components/CourseTable";
-import CourseService from "../services/CourseService";
+import { CourseService } from "../services/CourseService";
 
 export default class EnrolledCourses extends React.Component {
+  state = {
+    courses: [],
+  }
+  
   componentDidMount() {
     CourseService.getEnrolledCourses()
       .then(res => {

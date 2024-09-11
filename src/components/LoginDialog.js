@@ -13,7 +13,7 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { DialogContentText } from '@mui/material';
-import { AuthService } from '../service/AuthService';
+import { AuthService } from '../services/AuthService';
 import cookie from "react-cookies";
 import { JWT_COOKIE_KEY } from '../constants';
 
@@ -70,6 +70,7 @@ export default function LoginDialog(props) {
           <Input
             id="standard-adornment-password"
             type={showPassword ? 'text' : 'password'}
+            required
             onChange={(event) => password = event.target.value}
             endAdornment={
               <InputAdornment position="end">

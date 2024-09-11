@@ -1,5 +1,5 @@
 import React from "react";
-import { CourseService } from "../service/CourseService";
+import { CourseService } from "../services/CourseService";
 import CourseTable from "../components/CourseTable";
 
 export default class AllCourses extends React.Component {
@@ -28,7 +28,6 @@ export default class AllCourses extends React.Component {
           <CourseTable courses={this.state.courses} />
         </div>
       </>
-            
     )
   }
 }
